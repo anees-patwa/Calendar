@@ -1,4 +1,5 @@
 <?php
+//open connection to database
 $mysqli = new mysqli('localhost', 'wustl_inst', 'wustl_pass', 'calendar');
 
 if($mysqli->connect_errno) {
