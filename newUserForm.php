@@ -33,4 +33,4 @@
 </div>
 
 <!--load js file-->
-<script src="unregisteredAjax.js"></script>
+<script src="ajax.js"></script>
