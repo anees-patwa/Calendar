@@ -27,8 +27,8 @@
             <label for="passwordR">Password: </label>
             <input type="password" id="passwordR" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" id="register_btn" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
-<script type="text/javascript" src="unregisteredAjax.js"></script>
+<script src="unregisteredAjax.js"></script>

@@ -17,8 +17,9 @@
             <label for="start">Start Time: </label>
             <input type="text" id="start" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <input type="hidden" value="<?php session_start(); echo $_SESSION['token'];?>" id="token">
+        <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
     </form>
 </div>
 
-<script type="text/javascript" src="unregisteredAjax.js"></script>
+<script src="unregisteredAjax.js"></script>

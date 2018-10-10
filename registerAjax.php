@@ -15,32 +15,37 @@ $password = $json_obj['password'];
 //query database for login information
 require('dataBaseAnees.php');
 
-$stmt = $mysqli->prepare("select id, hash from users where username=?");
-
-$stmt->bind_param('s', $username);
-$stmt->execute();
-
-$stmt->bind_result($userID, $dbpass);
-
-$stmt->fetch();
-
-
-// Check to see if the username and password are valid.  (You learned how to do this in Module 3.)
-
-if(password_verify($password, $dbpass)){
-	session_start();
-	$_SESSION['userID'] = $userID;
-	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
-
-	echo json_encode(array(
-		"success" => true
-	));
-	exit;
-}else{
-	echo json_encode(array(
-		"success" => false,
-		"message" => "Incorrect Username or Password"
-	));
-	exit;
+//check valid username
+if( !preg_match('/^[\w_\-]+$/', $username) ){
+echo json_encode(array(
+    "error" => true,
+    "eMessage" => "Invalid Username"
+));
+exit();
 }
+
+$hash = password_hash($password, PASSWORD_BCRYPT);
+
+
+$insert = $mysqli->prepare("insert into users (username, hash) values (?, ?)");
+if(!$insert){
+//printf("Query Prep Failed: %s\n", $mysqli->error);
+echo json_encode(array(
+"error" => true,
+"eMessage" => ($mysqli->error)
+));
+exit();
+}
+
+$insert->bind_param('ss', $username , $hash);
+
+$insert->execute();
+
+$insert->close();
+
+echo json_encode(array(
+    "error" => false
+));
+exit();
+
 ?>
