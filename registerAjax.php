@@ -12,7 +12,7 @@ $username = $json_obj['username'];
 $password = $json_obj['password'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
-//query database for login information
+//connect to database
 require('dataBaseAnees.php');
 
 //check valid username
@@ -24,9 +24,10 @@ echo json_encode(array(
 exit();
 }
 
+//hash password
 $hash = password_hash($password, PASSWORD_BCRYPT);
 
-
+//prepare and execute insertion of new user
 $insert = $mysqli->prepare("insert into users (username, hash) values (?, ?)");
 if(!$insert){
 //printf("Query Prep Failed: %s\n", $mysqli->error);
@@ -43,6 +44,7 @@ $insert->execute();
 
 $insert->close();
 
+//respond that insertion was successful
 echo json_encode(array(
     "error" => false
 ));

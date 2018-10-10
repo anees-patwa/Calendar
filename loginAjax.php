@@ -26,7 +26,6 @@ $stmt->fetch();
 
 
 // Check to see if the username and password are valid.  (You learned how to do this in Module 3.)
-
 if(password_verify($password, $dbpass)){
 	session_start();
 	$_SESSION['userID'] = $userID;

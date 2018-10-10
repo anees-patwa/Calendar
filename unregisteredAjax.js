@@ -12,6 +12,7 @@ function changeToLoggedInUI() {
     $("#cal").show();
 }
 
+//change to logged in UI if login was successful
 function processLogin(data) {
     if (data.success) {
         changeToLoggedInUI();
@@ -29,6 +30,7 @@ function loginAjax(event) {
         'password': password
     };
 
+    //call server script to log user in
     fetch("loginAjax.php", {
             method: 'POST',
             body: JSON.stringify(data),
@@ -41,13 +43,15 @@ function loginAjax(event) {
         .catch(error => console.error('Error:', error));
 }
 
+//add event listener for login form
 document.getElementById("login_btn").addEventListener("click", loginAjax, false);
 
+//alert user to successful registration
 function processRegister(data) {
     if (data.error) {
         console.log(data.eMessage);
     } else {
-        console.log("login successful");
+        console.log("registration successful");
         alert("Now login using the login form");
     }
 }
@@ -63,6 +67,7 @@ function newUserAjax(event) {
         'password': password
     };
 
+    //call server script to register user and add them to database
     fetch("registerAjax.php", {
             method: 'POST',
             body: JSON.stringify(data),
@@ -75,4 +80,5 @@ function newUserAjax(event) {
         .catch(error => console.error('Error:', error))
 }
 
+//add event listener for register form
 document.getElementById("register_btn").addEventListener("click", newUserAjax, false);
