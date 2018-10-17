@@ -7,15 +7,21 @@ function changeToLoggedInUI() {
 
     //show new event form
     $("#addEvent").show();
+}
 
-    //show calendar
-    $("#cal").show();
+function changeToGuestUI() {
+    $("#loginForm").show();
+    $("#newUserForm").show();
+    $("#addEvent").hide();
 }
 
 //change to logged in UI if login was successful
 function processLogin(data) {
     if (data.success) {
         changeToLoggedInUI();
+    } else {
+        console.log("failed login");
+        changeToGuestUI();
     }
 }
 
@@ -76,7 +82,7 @@ function newUserAjax(event) {
             }
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => processRegister(data))
         .catch(error => console.error('Error:', error))
 }
 

@@ -20,8 +20,8 @@
         <h1>Calendar</h1>
     </div>
     <?php
-        require("newUserForm.php");
-        require("userForms.php")
+        require("UsrMgmt/loginRegisterForms.php");
+        require("UsrMgmt/addEventForm.php");
     ?>
 </body>
 

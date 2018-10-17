@@ -42,12 +42,13 @@ $insert->bind_param('ss', $username , $hash);
 
 $insert->execute();
 
-$insert->close();
-
 //respond that insertion was successful
 echo json_encode(array(
-    "error" => false
+"error" => false
 ));
+
+$insert->close();
 exit();
+
 
 ?>

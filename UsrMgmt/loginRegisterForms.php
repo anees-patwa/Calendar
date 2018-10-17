@@ -33,4 +33,4 @@
 </div>
 
 <!--load js file-->
-<script src="ajax.js"></script>
+<script src="loginRegisterAjax.js"></script>
