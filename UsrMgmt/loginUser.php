@@ -34,12 +34,14 @@ if(password_verify($password, $dbpass)){
 	echo json_encode(array(
 		"success" => true
 	));
-	exit;
+	exit();
 }else{
 	echo json_encode(array(
 		"success" => false,
 		"message" => "Incorrect Username or Password"
 	));
-	exit;
+	exit();
 }
+
+$stmt.close();
 ?>
