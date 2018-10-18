@@ -37,7 +37,7 @@ function loginAjax(event) {
     };
 
     //call server script to log user in
-    fetch("loginUser.php", {
+    fetch("UsrMgmt/loginUser.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -55,7 +55,7 @@ document.getElementById("login_btn").addEventListener("click", loginAjax, false)
 //alert user to successful registration
 function processRegister(data) {
     console.log("fetch returned data");
-    if (data.error) {
+    if (data.error == "true") {
         console.log(data.eMessage);
         //changeToLoggedInUI();
     } else {
@@ -84,8 +84,8 @@ function newUserAjax(event) {
                 'content-type': 'application/json'
             }
         })
-        .then(response => response.body)
-        .then(data => console.log(data))
+        .then(response => response.json())
+        .then(data => processRegister(data))
         .catch(error => console.error('Error:', error))
 }
 
