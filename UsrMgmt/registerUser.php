@@ -29,14 +29,14 @@ $hash = password_hash($password, PASSWORD_BCRYPT);
 
 //prepare and execute insertion of new user
 $insert = $mysqli->prepare("insert into users (username, hash) values (?, ?)");
-if(!$insert){
+/*if(!$insert){
 //printf("Query Prep Failed: %s\n", $mysqli->error);
 echo json_encode(array(
 "error" => true,
-"eMessage" => ($mysqli->error)
+"eMessage" => "insert failed"
 ));
 exit();
-}
+}*/
 
 $insert->bind_param('ss', $username , $hash);
 
@@ -44,7 +44,7 @@ $insert->execute();
 
 //respond that insertion was successful
 echo json_encode(array(
-"error" => false
+"error" => false,
 ));
 
 $insert->close();

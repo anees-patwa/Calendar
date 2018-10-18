@@ -19,6 +19,33 @@ if(!isset($_SESSION['userID'])){
 }
 $userID = $_SESSION['userID'];
 
+//check valid title
+if( !preg_match('/(\w*\ *)+/', $title) ){
+echo json_encode(array(
+"error" => true,
+"eMessage" => "Invalid Username"
+));
+exit();
+}
+
+//check valid date
+if( !preg_match('/\d{4}-\d{2}-\d{2}/', $date) ){
+echo json_encode(array(
+"error" => true,
+"eMessage" => "Invalid Username"
+));
+exit();
+}
+
+//check valid time
+if( !preg_match('/\d{2}:\d{2}/', $start) ){
+echo json_encode(array(
+"error" => true,
+"eMessage" => "Invalid Username"
+));
+exit();
+}
+
 require("dataBaseAnees.php");
 
 $stmt = $mysqli->prepare("insert into events (title, date, time, owner_id) values (?, ?, ?, ?)");

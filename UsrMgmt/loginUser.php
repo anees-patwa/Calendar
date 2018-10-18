@@ -12,6 +12,15 @@ $username = $json_obj['username'];
 $password = $json_obj['password'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
+//check valid username
+if( !preg_match('/^[\w_\-]+$/', $username) ){
+echo json_encode(array(
+"error" => true,
+"eMessage" => "Invalid Username"
+));
+exit();
+}
+
 //query database for login information
 require('dataBaseAnees.php');
 

@@ -21,7 +21,7 @@
     </div>
     <?php
         require("UsrMgmt/loginRegisterForms.php");
-        require("UsrMgmt/addEventForm.php");
+        require("EventMgmt/addEventForm.php");
     ?>
 </body>
 

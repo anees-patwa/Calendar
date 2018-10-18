@@ -48,3 +48,6 @@ function addEvent() {
         .then(data => processAddEvent(data))
         .catch(error => console.log("Error: " + error))
 }
+
+//add event listener to form button
+document.getElementById("newEvent_btn").addEventListener("click", addEvent, false);
