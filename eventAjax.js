@@ -7,6 +7,7 @@ function processAddEvent(data) {
 }
 //function to call server script to add event to db
 function addEvent() {
+    event.preventDefault();
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;

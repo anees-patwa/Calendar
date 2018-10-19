@@ -18,6 +18,7 @@ function changeToGuestUI() {
 //change to logged in UI if login was successful
 function processLogin(data) {
     if (data.success == "true") {
+        console.log("login successful");
         changeToLoggedInUI();
     } else {
         console.log("failed login");
@@ -27,6 +28,7 @@ function processLogin(data) {
 
 //ajax function to log user into calendar website
 function loginAjax(event) {
+    event.preventDefault();
     const username = document.getElementById("usernameL").value; // Get the username from the form
     const password = document.getElementById("passwordL").value; // Get the password from the form
 
@@ -37,14 +39,21 @@ function loginAjax(event) {
     };
 
     //call server script to log user in
-    fetch("UsrMgmt/loginUser.php", {
+    fetch("loginUser.php", {
             method: 'POST',
+            //mode: 'same-origin',
             body: JSON.stringify(data),
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json; charset=utf-8'
             }
         })
-        .then(response => response.json())
+        .then(function (response) {
+            var contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return response.json();
+            }
+            throw new TypeError("Oops, we haven't got JSON!");
+        })
         .then(data => processLogin(data))
         .catch(error => console.error('Error:', error));
 }
@@ -66,6 +75,7 @@ function processRegister(data) {
 
 //ajax function to add new user to the calendar website
 function newUserAjax(event) {
+    event.preventDefault();
     console.log("starting register");
     const username = document.getElementById("usernameR").value; // Get the username from the form
     const password = document.getElementById("passwordR").value; // Get the password from the form
@@ -77,14 +87,21 @@ function newUserAjax(event) {
     };
     console.log(JSON.stringify(data));
     //call server script to register user and add them to database
-    fetch("UsrMgmt/registerUser.php", {
+    fetch("registerUser.php", {
             method: 'POST',
+            //mode: 'same-origin',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'
             }
         })
-        .then(response => response.json())
+        .then(function (response) {
+            var contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return response.json();
+            }
+            throw new TypeError("Oops, we haven't got JSON!");
+        })
         .then(processRegister(data))
         .catch(error => console.error('Error:', error));
 }
