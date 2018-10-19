@@ -17,7 +17,7 @@ function changeToGuestUI() {
 
 //change to logged in UI if login was successful
 function processLogin(data) {
-    if (data.success) {
+    if (data.success == "true") {
         changeToLoggedInUI();
     } else {
         console.log("failed login");
@@ -81,12 +81,12 @@ function newUserAjax(event) {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json; charset=utf-8'
             }
         })
         .then(response => response.json())
-        .then(data => processRegister(data))
-        .catch(error => console.error('Error:', error))
+        .then(processRegister(data))
+        .catch(error => console.error('Error:', error));
 }
 
 //add event listener for register form
