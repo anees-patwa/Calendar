@@ -12,9 +12,24 @@ $username = $json_obj['username'];
 $password = $json_obj['password'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
-//query database for login information
-require('dataBaseAnees.php');
+//check valid username
+if( !preg_match('/^[\w_\-]+$/', $username) ){
+echo json_encode(array(
+"success" => "false",
+"eMessage" => "Invalid Username"
+));
+exit();
+}
 
+//open connection to database
+$mysqli = new mysqli('localhost', 'wustl_inst', 'wustl_pass', 'calendar');
+
+if($mysqli->connect_errno) {
+printf("Connection Failed: %s\n", $mysqli->connect_error);
+exit();
+}
+
+//prepare and execute query
 $stmt = $mysqli->prepare("select id, hash from users where username=?");
 
 $stmt->bind_param('s', $username);
@@ -32,14 +47,18 @@ if(password_verify($password, $dbpass)){
 	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
 
 	echo json_encode(array(
-		"success" => true
+		"success" => "true"
 	));
-	exit;
+$stmt.close();
+	//exit();
 }else{
 	echo json_encode(array(
-		"success" => false,
+		"success" => "false",
 		"message" => "Incorrect Username or Password"
 	));
-	exit;
+$stmt.close();
+	//exit();
 }
+
+
 ?>

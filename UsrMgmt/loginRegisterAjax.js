@@ -7,15 +7,21 @@ function changeToLoggedInUI() {
 
     //show new event form
     $("#addEvent").show();
+}
 
-    //show calendar
-    $("#cal").show();
+function changeToGuestUI() {
+    $("#loginForm").show();
+    $("#newUserForm").show();
+    $("#addEvent").hide();
 }
 
 //change to logged in UI if login was successful
 function processLogin(data) {
-    if (data.success) {
+    if (data.success == "true") {
         changeToLoggedInUI();
+    } else {
+        console.log("failed login");
+        changeToGuestUI();
     }
 }
 
@@ -31,7 +37,7 @@ function loginAjax(event) {
     };
 
     //call server script to log user in
-    fetch("loginAjax.php", {
+    fetch("UsrMgmt/loginUser.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
@@ -48,8 +54,10 @@ document.getElementById("login_btn").addEventListener("click", loginAjax, false)
 
 //alert user to successful registration
 function processRegister(data) {
-    if (data.error) {
+    console.log("fetch returned data");
+    if (data.error == "true") {
         console.log(data.eMessage);
+        //changeToLoggedInUI();
     } else {
         console.log("registration successful");
         alert("Now login using the login form");
@@ -58,6 +66,7 @@ function processRegister(data) {
 
 //ajax function to add new user to the calendar website
 function newUserAjax(event) {
+    console.log("starting register");
     const username = document.getElementById("usernameR").value; // Get the username from the form
     const password = document.getElementById("passwordR").value; // Get the password from the form
 
@@ -66,19 +75,20 @@ function newUserAjax(event) {
         'username': username,
         'password': password
     };
-
+    console.log(JSON.stringify(data));
     //call server script to register user and add them to database
-    fetch("registerAjax.php", {
+    fetch("UsrMgmt/registerUser.php", {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
-                'content-type': 'application/json'
+                'Content-Type': 'application/json; charset=utf-8'
             }
         })
         .then(response => response.json())
-        .then(data => console.log(data))
-        .catch(error => console.error('Error:', error))
+        .then(processRegister(data))
+        .catch(error => console.error('Error:', error));
 }
 
 //add event listener for register form
 document.getElementById("register_btn").addEventListener("click", newUserAjax, false);
+//document.getElementById("register_btn").addEventListener("click", () => console.log("event listener triggered"), false);
