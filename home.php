@@ -61,14 +61,10 @@
 
     <!-- Tags List -->
     <div class="container" id="tagsList">
-        <div class="form-group">
+        <!-- <div class="form-group">
             <input type="checkbox" name="tags" class="form-control">
             <label for="tags">Default: </label>
-        </div>
-        <div class="form-group">
-            <input type="checkbox" name="tags" class="form-control">
-            <label for="tags">Default: </label>
-        </div>
+        </div> -->
     </div>
     <!--New Tag Form-->
     <div class="container" id="newTagForm">

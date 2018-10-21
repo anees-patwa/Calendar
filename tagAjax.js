@@ -2,8 +2,9 @@ function processResponse(data) {
     if (data.error) {
         console.error(data.eMessage);
     } else {
-        console.log("added successfully");
+
         getTagList();
+        console.log("added successfully");
     }
 }
 
