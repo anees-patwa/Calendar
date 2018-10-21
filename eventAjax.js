@@ -13,7 +13,7 @@ function addEvent() {
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
-    const token = document.getElementById("token").value;
+    const token = document.getElementsByClassName("token")[0].value;
     let tags = document.getElementById("tags").value;
     tags = tags.replace(/\s+/g, '');
     let tags_arr = tags.split(",");

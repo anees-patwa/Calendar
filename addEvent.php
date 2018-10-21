@@ -29,8 +29,7 @@ if(strcmp($token, $_SESSION['token']) != 0){
     echo json_encode(array(
         "error" => true,
         "eMessage" => "Request Forgery detected",
-        "passed token" => $token,
-        "session token" => $_SESSION['token']
+       
     ));
     exit;
 }

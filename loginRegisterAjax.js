@@ -7,14 +7,25 @@ function changeToLoggedInUI(token) {
 
     //show new event form
     $("#addEvent").show();
+    $("#newTagForm").show();
+    $("#tagsList").show();
 
-    $("#token").val(token);
+    $(".token").val(token);
+
+    //make tags list
+    fetch("getTags.php", {
+        method: "POST",
+        token: 'token',
+
+    })
 }
 
 function changeToGuestUI() {
     $("#loginForm").show();
     $("#newUserForm").show();
     $("#addEvent").hide();
+    $("#newTagForm").hide();
+    $("#tagsList").hide();
 }
 
 //change to logged in UI if login was successful

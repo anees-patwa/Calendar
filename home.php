@@ -57,6 +57,31 @@
     <script src="loginRegisterAjax.js"></script>
     <!--Forms Applicable for registered users-->
 
+    <!-- Tags List -->
+    <div class="container" id="tagsList">
+        <div class="form-group">
+            <input type="checkbox" name="tags" class="form-control">
+            <label for="tags">Default: </label>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" name="tags" class="form-control">
+            <label for="tags">Default: </label>
+        </div>
+    </div>
+    <!--New Tag Form-->
+    <div class="container" id="newTagForm">
+        <h1>Create Tag</h1>
+        <form>
+            <div class="form-group">
+                <label for="tag_name">Name: </label>
+                <input type="text" id="tag_name" placeholder="Tag Name" class="form-control">
+            </div>
+            <input type="hidden" value="null" class="token">
+            <button type="submit" id="newTag_btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="tagAjax.js"></script>
 
     <!--Add Event Form-->
     <div class="container" id="addEvent">
@@ -78,12 +103,15 @@
                 <label for="tags">Tags: </label>
                 <input type="text" id="tags" class="form-control" placeholder="Separate tags by commas">
             </div>
-            <input type="hidden" value="null" id="token">
+            <input type="hidden" value="null" class="token">
             <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
         </form>
     </div>
 
     <script src="eventAjax.js"></script>
+
+
+
 </body>
 
 
