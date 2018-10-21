@@ -8,7 +8,7 @@ function changeToLoggedInUI(token) {
     //show new event form
     $("#addEvent").show();
 
-    $("#token").value = token;
+    $("#token").val(token);
 }
 
 function changeToGuestUI() {
@@ -22,6 +22,7 @@ function processLogin(data) {
     if (data.success == "true") {
         console.log("login successful");
         const token = data.token;
+        console.log(data.token);
         changeToLoggedInUI(token);
 
     } else {

@@ -14,9 +14,11 @@ function addEvent() {
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
     const token = document.getElementById("token").value;
-    console.log(title);
-    console.log(date);
-    console.log(startTime);
+    let tags = document.getElementById("tags").value;
+    tags = tags.replace(/\s+/g, '');
+    let tags_arr = tags.split(",");
+    console.log(tags_arr);
+
     //filter title
     titleRegEx = RegExp('(\w*\ *)+');
     if (!titleRegEx.test(title)) {
@@ -44,7 +46,8 @@ function addEvent() {
         'start': startTime,
         'date': date,
         'title': title,
-        'token': token
+        'token': token,
+        'tags': tags_arr
     }
 
     //make http request

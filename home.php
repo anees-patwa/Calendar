@@ -74,6 +74,10 @@
                 <label for="start">Start Time: </label>
                 <input type="time" id="start" class="form-control">
             </div>
+            <div class="form-group">
+                <label for="tags">Tags: </label>
+                <input type="text" id="tags" class="form-control" placeholder="Separate tags by commas">
+            </div>
             <input type="hidden" value="null" id="token">
             <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
         </form>

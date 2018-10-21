@@ -75,6 +75,9 @@ $stmt->execute();
 
 $stmt->close();
 
+$insertedEventID = $mysqli->lastInsertId();
+
+$stmt = $mysqli->prepare("select id from tags where name=?");
 echo json_encode(array(
     "error" => false,
 ));
