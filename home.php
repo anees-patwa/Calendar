@@ -82,6 +82,8 @@
     <script src="eventAjax.js"></script>
 </body>
 
-
+<?php
+    require('calendar.html');
+?>
 
 </html>

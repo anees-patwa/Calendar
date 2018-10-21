@@ -1,13 +1,14 @@
-let months = ['January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+let months = [null, 'January', 'Febuary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 let today = new Date();
-let month = today.getMonth();
+let month = today.getMonth()+1;
 let year = today.getFullYear();
 
-let monthHolder = today.getMonth();
+let monthHolder = today.getMonth()+1;
 let yearHolder = today.getFullYear();
 
 document.getElementById('next').addEventListener('click', nextMonth);
-document.getElementById('next').addEventListener('click', makeCalendar);
+// document.getElementById('next').addEventListener('click', removeDays);
+// document.getElementById('prev').addEventListener('click', removeDays);
 document.getElementById('prev').addEventListener('click', prevMonth);
 document.getElementById('today').addEventListener('click', currentDate);
 document.getElementById("month").innerHTML = months[month]; //sets current month
@@ -16,8 +17,8 @@ document.getElementById("year").innerHTML = year;
 
 function nextMonth(){
     month += 1;
-    if(month > 11){ 
-        month = 0;
+    if(month > 12){ 
+        month = 1;
         year = year +1;
         document.getElementById('year').innerHTML = year;
     }
@@ -27,7 +28,7 @@ function nextMonth(){
 function prevMonth(){
     month -= 1;
     if(month < 1){ 
-        month = 11;
+        month = 12;
         year = year -1;
         document.getElementById('year').innerHTML = year;
     }
@@ -44,29 +45,28 @@ function currentDate(){ //resets date
 
 let day = 1;
 
-// for(i = 1; i <= 31; ++i){
-//     $(".days").append("<li id=" + '' + 'day' + day +  ">" + (day) + "</li>");
-//     day += 1;
-// }
-function makeCalendar(){
 
-    
-     if(month == 0 || month == 2 || month == 4 || month == 6 || month == 7 || month == 9 || month == 11){
-        let amountOfDays = 31;
+function removeDays(){
+   
+    let day = 1;
+    let amountOfDays = 31;
 
-        for(i = 1; i <= amountOfDays; ++i){
-            $(".days").append("<li id=" + '' + 'day' + day +  ">" + (day) + "</li>");
-            day += 1;
-        }
-        
-    }
+    for(i = 1; i <= amountOfDays; ++i){
+        $(".days").empty();
+     }
 
-    if(month == 1){
+    if(month == 2){
         amountOfDays = 28;
-        for(i = 1; i <= amountOfDays; ++i){
-            $(".days").append("<li id=" + '' + 'day' + day +  ">" + (day) + "</li>");
-            day += 1;
-        }
     }
-}
+    if(month == 4 || month == 6 || month == 9 || month == 11 ){
+        amountOfDays = 30;
+    }
 
+
+    for(i = 1; i <= amountOfDays; ++i){
+        $(".days").append("<li id=" + '' + 'day' + day +  ">" + (day) + "</li>");
+         day += 1;
+    }
+    console.log(amountOfDays +'days');
+    console.log("month" + month);
+}
