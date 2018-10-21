@@ -16,16 +16,22 @@ if(!isset($_SESSION['userID'])){
     "error" => true,
     "eMessage" => "Not Logged In"
     ));
+    exit;
 }
-$userID = $_SESSION['userID'];
 
+$userID = $_SESSION['userID'];
+echo json_encode(array(
+"error" => true,
+"eMessage" => "debug"
+));
+exit;
 //check valid title
 if( !preg_match('/(\w*\ *)+/', $title) ){
 echo json_encode(array(
 "error" => true,
 "eMessage" => "Invalid Username"
 ));
-exit();
+exit;
 }
 
 //check valid date
@@ -34,7 +40,7 @@ echo json_encode(array(
 "error" => true,
 "eMessage" => "Invalid Username"
 ));
-exit();
+exit;
 }
 
 //check valid time
@@ -43,7 +49,7 @@ echo json_encode(array(
 "error" => true,
 "eMessage" => "Invalid Username"
 ));
-exit();
+exit;
 }
 
 require("dataBaseAnees.php");
