@@ -5,6 +5,9 @@ function processAddEvent(data) {
         console.log(data.eMessage);
     } else {
         console.log("succesfully added");
+        //clear form
+        $(".clear").val("");
+
     }
 }
 //function to call server script to add event to db

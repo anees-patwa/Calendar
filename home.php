@@ -35,7 +35,7 @@
                 <label for="passwordL">Password: </label>
                 <input type="password" id="passwordL" class="form-control">
             </div>
-            <button type="submit" id="login_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="login_btn" class="btn btn-primary">Login</button>
         </form>
     </div>
 
@@ -51,7 +51,7 @@
                 <label for="passwordR">Password: </label>
                 <input type="password" id="passwordR" class="form-control">
             </div>
-            <button type="submit" id="register_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="register_btn" class="btn btn-primary">Register</button>
         </form>
     </div>
 
@@ -72,10 +72,10 @@
         <form>
             <div class="form-group">
                 <label for="tag_name">Name: </label>
-                <input type="text" id="tag_name" placeholder="Tag Name" class="form-control">
+                <input type="text" id="tag_name" placeholder="Tag Name" class="form-control clear">
             </div>
             <input type="hidden" value="null" class="token">
-            <button type="submit" id="newTag_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="newTag_btn" class="btn btn-primary">Create Tag</button>
         </form>
     </div>
 
@@ -87,26 +87,29 @@
         <form>
             <div class="form-group">
                 <label for="title">Title: </label>
-                <input type="text" id="title" placeholder="Event Title" class="form-control">
+                <input type="text" id="title" placeholder="Event Title" class="form-control clear">
             </div>
             <div class="form-group">
                 <label for="date">Date: </label>
-                <input type="date" id="date" class="form-control">
+                <input type="date" id="date" class="form-control clear">
             </div>
             <div class="form-group">
                 <label for="start">Start Time: </label>
-                <input type="time" id="start" class="form-control">
+                <input type="time" id="start" class="form-control clear">
             </div>
             <div class="form-group">
                 <label for="tags">Tags: </label>
-                <input type="text" id="tags" class="form-control" placeholder="Separate tags by commas">
+                <input type="text" id="tags" class="form-control clear" placeholder="Separate tags by commas">
             </div>
             <input type="hidden" value="null" class="token">
-            <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="newEvent_btn" class="btn btn-primary">Create Event</button>
         </form>
     </div>
 
     <script src="eventAjax.js"></script>
+
+    <button type="submit" id="signOut_btn" class="btn btn-primary">Sign-Out</button>
+    <script src="signOut.js"></script>
 
 
 
