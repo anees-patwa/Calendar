@@ -3,6 +3,7 @@ function processResponse(data) {
         console.error(data.eMessage);
     } else {
         console.log("added successfully");
+        getTagList();
     }
 }
 

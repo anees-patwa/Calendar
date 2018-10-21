@@ -44,7 +44,7 @@ if(!preg_match('/^[\w_\-]+$/', $tag)){
 require("dataBaseAnees.php");
 
 //insert into new tag into table
-$stmt->prepare("insert into tags (owner_id, name) values (?,?)");
+$stmt = $mysqli->prepare("insert into tags (owner_id, name) values (?,?)");
 $stmt->bind_param('ds', $userID, $tag);
 $stmt->execute();
 $stmt->close();

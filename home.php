@@ -16,6 +16,8 @@
 </head>
 
 <body>
+    <script src="makeTagsList.js"></script>
+
     <div class="container" id="cal">
         <h1>Calendar</h1>
     </div>

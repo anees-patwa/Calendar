@@ -1,8 +1,3 @@
-//construct list items for tags list
-function makeList(data) {
-    console.log(data);
-}
-
 function changeToLoggedInUI(token) {
     //hide login form
     $("#loginForm").hide();
@@ -17,15 +12,7 @@ function changeToLoggedInUI(token) {
 
     $(".token").val(token);
 
-    //make tags list
-    fetch("getTags.php", {
-            method: "POST",
-            headers: {
-                "content-type": 'application/json'
-            }
-        }).then(res => res.json())
-        .then(makeList(data))
-        .catch(error => console.error("Error: " + error));
+    getTagList();
 }
 
 function changeToGuestUI() {
