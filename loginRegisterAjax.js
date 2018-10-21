@@ -1,6 +1,6 @@
 //construct list items for tags list
 function makeList(data) {
-
+    console.log(data);
 }
 
 function changeToLoggedInUI(token) {
