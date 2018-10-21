@@ -39,14 +39,15 @@ $stmt->close();
 
 // Check to see if the username and password are valid.  (You learned how to do this in Module 3.)
 if(password_verify($password, $dbpass)){
-echo json_encode(array(
-"success" => "true"
-));
-exit;
+
 	session_start();
 
 	$_SESSION['userID'] = $userID;
 	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
+	echo json_encode(array(
+	"success" => "true"
+	));
+	exit;
 
 
 	

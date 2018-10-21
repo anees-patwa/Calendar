@@ -52,6 +52,11 @@ echo json_encode(array(
 exit;
 }
 
+echo json_encode(array(
+"error" => true,
+"eMessage" => "debug"
+));
+exit;
 require("dataBaseAnees.php");
 
 $stmt = $mysqli->prepare("insert into events (title, date, time, owner_id) values (?, ?, ?, ?)");
