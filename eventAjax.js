@@ -13,6 +13,7 @@ function addEvent() {
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
+    const token = document.getElementById("token").value;
     console.log(title);
     console.log(date);
     console.log(startTime);
@@ -43,6 +44,7 @@ function addEvent() {
         'start': startTime,
         'date': date,
         'title': title,
+        'token': token
     }
 
     //make http request

@@ -20,8 +20,18 @@ if(!isset($_SESSION['userID'])){
     ));
     exit;
 }
-
 $userID = $_SESSION['userID'];
+
+//check CSRF token
+$token = $json_obj['token'];
+if(strcmp($token, $_SESSION['token']) != 0){
+    echo json_encode(array(
+        "error" => true,
+        "eMessage" => "Request Forgery detected"
+    ));
+}
+
+
 
 //check valid title
 if( !preg_match('/(\w*\ *)+/', $title) ){
