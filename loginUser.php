@@ -42,6 +42,7 @@ if(password_verify($password, $dbpass)){
 
 	session_start();
 
+	//set session variables
 	$_SESSION['userID'] = $userID;
 	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
 	echo json_encode(array(
@@ -53,6 +54,7 @@ if(password_verify($password, $dbpass)){
 	
 }else{
 
+	//respond with failed login
 	echo json_encode(array(
 		"success" => "false",
 		"message" => "Incorrect Username or Password"

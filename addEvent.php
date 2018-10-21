@@ -11,6 +11,8 @@ $json_obj = json_decode($json_str, true);
 $title = $json_obj['title'];
 $date = $json_obj['date'];
 $start = $json_obj['start'];
+
+//check log-in status
 if(!isset($_SESSION['userID'])){
     echo json_encode(array(
     "error" => true,
@@ -20,11 +22,7 @@ if(!isset($_SESSION['userID'])){
 }
 
 $userID = $_SESSION['userID'];
-echo json_encode(array(
-"error" => true,
-"eMessage" => "debug"
-));
-exit;
+
 //check valid title
 if( !preg_match('/(\w*\ *)+/', $title) ){
 echo json_encode(array(
@@ -52,16 +50,14 @@ echo json_encode(array(
 exit;
 }
 
-echo json_encode(array(
-"error" => true,
-"eMessage" => "debug"
-));
-exit;
+//connect to database
 require("dataBaseAnees.php");
 
-$stmt = $mysqli->prepare("insert into events (title, date, time, owner_id) values (?, ?, ?, ?)");
+//prepare and execute query
+$stmt = $mysqli->prepare("insert into events (title, date, start, owner_id) values (?, ?, ?, ?)");
 
-$stmt->bind_param('sssd', $title, $date, $time, $userID);
+
+$stmt->bind_param('sssd', $title, $date, $start, $userID);
 $stmt->execute();
 
 $stmt->close();

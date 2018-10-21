@@ -40,18 +40,9 @@ $hash = password_hash($password, PASSWORD_BCRYPT);
 //prepare and execute insertion of new user
 $insert = $mysqli->prepare("insert into users (username, hash) values (?, ?)");
 
-
-
 $insert->bind_param('ss', $username , $hash);
 
-
-
 $insert->execute();
-
-//respond that insertion was successful
-// echo json_encode(array(
-// "error" => false,
-// ));
 
 $insert->close();
 
