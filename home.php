@@ -19,10 +19,67 @@
     <div class="container" id="cal">
         <h1>Calendar</h1>
     </div>
-    <?php
-        require("newUserForm.php");
-        require("userForms.php")
-    ?>
+    <!--Forms Applicable for unregistered users-->
+
+    <!--Login Form-->
+    <div class="container" id="loginForm">
+        <h1>Login</h1>
+        <form>
+            <div class="form-group">
+                <label for="usernameL">Username: </label>
+                <input type="text" id="usernameL" placeholder="User Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="passwordL">Password: </label>
+                <input type="password" id="passwordL" class="form-control">
+            </div>
+            <button type="submit" id="login_btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!--New User Form-->
+    <div class="container" id="newUserForm">
+        <h1>Register</h1>
+        <form>
+            <div class="form-group">
+                <label for="usernameR">Username: </label>
+                <input type="text" id="usernameR" placeholder="User Name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="passwordR">Password: </label>
+                <input type="password" id="passwordR" class="form-control">
+            </div>
+            <button type="submit" id="register_btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <!--load js file-->
+    <script src="loginRegisterAjax.js"></script>
+    <!--Forms Applicable for registered users-->
+
+
+    <!--Add Event Form-->
+    <div class="container" id="addEvent">
+        <h1>New Event</h1>
+        <form>
+            <div class="form-group">
+                <label for="title">Title: </label>
+                <input type="text" id="title" placeholder="Event Title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="date">Date: </label>
+                <input type="date" id="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="start">Start Time: </label>
+                <input type="time" id="start" class="form-control">
+            </div>
+            <input type="hidden" value="<?php session_start(); echo $_SESSION['token'];?>" id="token">
+            <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="eventAjax.js"></script>
 </body>
 
 

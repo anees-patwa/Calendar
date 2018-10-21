@@ -22,4 +22,4 @@
     </form>
 </div>
 
-<script src="ajax.js"></script>
+<script src="eventAjax.js"></script>
