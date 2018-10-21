@@ -74,7 +74,7 @@
                 <label for="start">Start Time: </label>
                 <input type="time" id="start" class="form-control">
             </div>
-            <input type="hidden" value="<?php session_start(); echo $_SESSION['token'];?>" id="token">
+            <input type="hidden" value="null" id="token">
             <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
         </form>
     </div>
