@@ -31,6 +31,15 @@ echo json_encode(array(
 exit;
 }
 
+//check valid tag name
+if(!preg_match('/^[\w_\-]+$/', $tag)){
+    echo json_encode(array(
+        "error" => true,
+        "eMessage" => "invalid tag name"
+    ));
+    exit;
+}
+
 //make connection to database
 require("dataBaseAnees.php");
 
