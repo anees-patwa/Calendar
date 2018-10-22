@@ -45,6 +45,7 @@
 <ul class="days">  
   
 </ul>
+<script type="text/javascript" src="calendar.js"></script>
     </div>
     <!--Forms Applicable for unregistered users-->
 
