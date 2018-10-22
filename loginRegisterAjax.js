@@ -9,6 +9,9 @@ function changeToLoggedInUI(token) {
     $("#addEvent").show();
     $("#newTagForm").show();
     $("#tagsList").show();
+    $("#cal").show();
+    $(".days").show();
+    $("#day1").show();
 
     $(".token").val(token);
 

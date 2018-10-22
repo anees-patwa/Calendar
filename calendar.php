@@ -7,6 +7,7 @@
 <body>
 
 
+
 <div class="month">      
   <ul>
     <button id="prev">&#10094</button>
@@ -20,18 +21,20 @@
 </div>
 
 <ul class="weekdays">
-  <li>Mo</li>
-  <li>Tu</li>
-  <li>We</li>
-  <li>Th</li>
-  <li>Fr</li>
-  <li>Sa</li>
-  <li>Su</li>
+  <!-- <li id="slot0"></li>
+  <li id="slot1"></li>
+  <li id="slot2"></li>
+  <li id="slot3"></li>
+  <li id="slot4"></li>
+  <li id="slot5"></li>
+  <li id="slot6"></li> -->
 </ul>
 
 <ul class="days">  
   
 </ul>
+
+
 
 </body>
 <script type="text/javascript" src="calendar.js"></script>

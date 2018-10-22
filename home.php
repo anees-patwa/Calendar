@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="calendar.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="site.css">
@@ -19,7 +20,32 @@
     <script src="makeTagsList.js"></script>
 
     <div class="container" id="cal">
-        <h1>Calendar</h1>
+    <div class="month">      
+  <ul>
+    <button id="prev">&#10094</button>
+    <button id="today">Today</button>
+    <button id="next">&#10095</button>
+    <li>
+     <h2 id="month"></h2>
+    <span id="year" style="font-size:18px"></span>
+    </li>
+  </ul>
+</div>
+
+<ul class="weekdays">
+  <li>Mo</li>
+  <li>Tu</li>
+  <li>We</li>
+  <li>Th</li>
+  <li>Fr</li>
+  <li>Sa</li>
+  <li>Su</li>
+</ul>
+
+<ul class="days">  
+  
+</ul>
+<script type="text/javascript" src="calendar.js"></script>
     </div>
     <!--Forms Applicable for unregistered users-->
 
@@ -105,7 +131,6 @@
             <button type="submit" id="newEvent_btn" class="btn btn-primary">Create Event</button>
         </form>
     </div>
-
     <script src="eventAjax.js"></script>
 
     <button type="submit" id="signOut_btn" class="btn btn-primary">Sign-Out</button>
@@ -114,7 +139,6 @@
 
 
 </body>
-
 
 
 </html>
