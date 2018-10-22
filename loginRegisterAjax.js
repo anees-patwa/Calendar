@@ -1,4 +1,4 @@
-function changeToLoggedInUI() {
+function changeToLoggedInUI(token) {
     //hide login form
     $("#loginForm").hide();
 
@@ -7,19 +7,30 @@ function changeToLoggedInUI() {
 
     //show new event form
     $("#addEvent").show();
+    $("#newTagForm").show();
+    $("#tagsList").show();
+
+    $(".token").val(token);
+
+    getTagList();
 }
 
 function changeToGuestUI() {
     $("#loginForm").show();
     $("#newUserForm").show();
     $("#addEvent").hide();
+    $("#newTagForm").hide();
+    $("#tagsList").hide();
 }
 
 //change to logged in UI if login was successful
 function processLogin(data) {
     if (data.success == "true") {
         console.log("login successful");
-        changeToLoggedInUI();
+        const token = data.token;
+        console.log(data.token);
+        changeToLoggedInUI(token);
+
     } else {
         console.log("failed login");
         changeToGuestUI();

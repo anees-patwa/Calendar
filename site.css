@@ -7,3 +7,11 @@
 #addEvent {
     display: none;
 }
+
+#newTagForm {
+    display: none;
+}
+
+#tagsList {
+    display: none;
+}

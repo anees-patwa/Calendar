@@ -12,7 +12,14 @@ $username = $json_obj['username'];
 $password = $json_obj['password'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
-
+//check valid username
+if( !preg_match('/^[\w_\-]+$/', $username) ){
+echo json_encode(array(
+	"success" => "false",
+	"message" => "invalid username"
+));
+exit;
+}
 
 //open connection to database
 $mysqli = new mysqli('localhost', 'wustl_inst', 'wustl_pass', 'calendar');
@@ -39,19 +46,23 @@ $stmt->close();
 
 // Check to see if the username and password are valid.  (You learned how to do this in Module 3.)
 if(password_verify($password, $dbpass)){
-echo json_encode(array(
-"success" => "true"
-));
-exit;
+
 	session_start();
 
+	//set session variables
 	$_SESSION['userID'] = $userID;
 	$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32)); 
+	echo json_encode(array(
+	"success" => "true",
+	"token" => $_SESSION['token']
+	));
+	exit;
 
 
 	
 }else{
 
+	//respond with failed login
 	echo json_encode(array(
 		"success" => "false",
 		"message" => "Incorrect Username or Password"
