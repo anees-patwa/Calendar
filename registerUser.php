@@ -20,7 +20,7 @@ $mysqli = new mysqli('localhost', 'wustl_inst', 'wustl_pass', 'calendar');
 
 if($mysqli->connect_errno) {
 printf("Connection Failed: %s\n", $mysqli->connect_error);
-exit();
+exit;
 }
 
 //check valid username
@@ -29,7 +29,7 @@ echo json_encode(array(
     "error" => "true",
     "eMessage" => "Invalid Username"
 ));
-exit();
+exit;
 }
 
 
