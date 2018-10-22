@@ -1,8 +1,13 @@
+//process http response
+//used as callback for fetch request
 function processAddEvent(data) {
     if (data.error) {
         console.log(data.eMessage);
     } else {
         console.log("succesfully added");
+        //clear form
+        $(".clear").val("");
+
     }
 }
 //function to call server script to add event to db
@@ -11,6 +16,11 @@ function addEvent() {
     const title = document.getElementById("title").value;
     const date = document.getElementById("date").value;
     const startTime = document.getElementById("start").value;
+    const token = document.getElementsByClassName("token")[0].value;
+    let tags = document.getElementById("tags").value;
+    tags = tags.replace(/\s+/g, '');
+    let tags_arr = tags.split(",");
+    console.log(tags_arr);
 
     //filter title
     titleRegEx = RegExp('(\w*\ *)+');
@@ -20,25 +30,30 @@ function addEvent() {
     }
 
     //filter date
-    dateRegEx = RegExp('\d{4}-\d{2}-\d{2}');
+    /*dateRegEx = RegExp('\d{4}-\d{2}-\d{2}');
+    console.log(dateRegEx);
+    console.log(dateRegEx.test(date));
     if (!dateRegEx.test(date)) {
         alert("Invalid date");
         return;
-    }
+    }*/
 
     //filter startTime
-    startTimeRegEx = RegExp('\d{2}:\d{2}');
+    /*startTimeRegEx = RegExp('\d{2}:\d{2}');
     if (!startTimeRegEx.test(startTime)) {
         alert("Invalid time");
         return;
-    }
+    }*/
 
     const data = {
         'start': startTime,
         'date': date,
         'title': title,
+        'token': token,
+        'tags': tags_arr
     }
 
+    //make http request
     fetch("addEvent.php", {
             method: 'POST',
             body: JSON.stringify(data),
@@ -47,7 +62,7 @@ function addEvent() {
             }
         }).then(response => response.json())
         .then(data => processAddEvent(data))
-        .catch(error => console.log("Error: " + error))
+        .catch(error => console.error("Error: " + error))
 }
 
 //add event listener to form button

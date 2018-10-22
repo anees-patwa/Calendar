@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <script src="makeTagsList.js"></script>
+
     <div class="container" id="cal">
     <div class="month">      
   <ul>
@@ -58,7 +60,7 @@
                 <label for="passwordL">Password: </label>
                 <input type="password" id="passwordL" class="form-control">
             </div>
-            <button type="submit" id="login_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="login_btn" class="btn btn-primary">Login</button>
         </form>
     </div>
 
@@ -74,7 +76,7 @@
                 <label for="passwordR">Password: </label>
                 <input type="password" id="passwordR" class="form-control">
             </div>
-            <button type="submit" id="register_btn" class="btn btn-primary">Submit</button>
+            <button type="submit" id="register_btn" class="btn btn-primary">Register</button>
         </form>
     </div>
 
@@ -82,6 +84,27 @@
     <script src="loginRegisterAjax.js"></script>
     <!--Forms Applicable for registered users-->
 
+    <!-- Tags List -->
+    <div class="container" id="tagsList">
+        <!-- <div class="form-group">
+            <input type="checkbox" name="tags" class="form-control">
+            <label for="tags">Default: </label>
+        </div> -->
+    </div>
+    <!--New Tag Form-->
+    <div class="container" id="newTagForm">
+        <h1>Create Tag</h1>
+        <form>
+            <div class="form-group">
+                <label for="tag_name">Name: </label>
+                <input type="text" id="tag_name" placeholder="Tag Name" class="form-control clear">
+            </div>
+            <input type="hidden" value="null" class="token">
+            <button type="submit" id="newTag_btn" class="btn btn-primary">Create Tag</button>
+        </form>
+    </div>
+
+    <script src="tagAjax.js"></script>
 
     <!--Add Event Form-->
     <div class="container" id="addEvent">
@@ -89,21 +112,31 @@
         <form>
             <div class="form-group">
                 <label for="title">Title: </label>
-                <input type="text" id="title" placeholder="Event Title" class="form-control">
+                <input type="text" id="title" placeholder="Event Title" class="form-control clear">
             </div>
             <div class="form-group">
                 <label for="date">Date: </label>
-                <input type="date" id="date" class="form-control">
+                <input type="date" id="date" class="form-control clear">
             </div>
             <div class="form-group">
                 <label for="start">Start Time: </label>
-                <input type="time" id="start" class="form-control">
+                <input type="time" id="start" class="form-control clear">
             </div>
-            <input type="hidden" value="<?php session_start(); echo $_SESSION['token'];?>" id="token">
-            <button type="submit" id="newEvent_btn" class="btn btn-primary">Submit</button>
+            <div class="form-group">
+                <label for="tags">Tags: </label>
+                <input type="text" id="tags" class="form-control clear" placeholder="Separate tags by commas">
+            </div>
+            <input type="hidden" value="null" class="token">
+            <button type="submit" id="newEvent_btn" class="btn btn-primary">Create Event</button>
         </form>
     </div>
     <script src="eventAjax.js"></script>
+
+    <button type="submit" id="signOut_btn" class="btn btn-primary">Sign-Out</button>
+    <script src="signOut.js"></script>
+
+
+
 </body>
 
 
