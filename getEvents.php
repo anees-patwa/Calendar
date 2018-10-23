@@ -31,8 +31,7 @@ require("dataBaseAnees.php");
 //and prepare query to get tag ids based on name
 $tag_ids = [];
 $stmt = $mysqli->prepare("select id from tags where name=?");
-echo json_encode(array($tags));
-exit;
+
 //
 foreach($tags as $tag_name){
     $stmt->bind_param('s', $tag_name);
@@ -51,13 +50,15 @@ $event_ids = [];
 $stmt = $mysqli->prepare("select event_id from tags_events where tag_id=?");
 
 //execute query and place event ids in array
-foreach($tag_ids as $key){
-$stmt->bind_param('d', $tags[$key]);
+foreach($tag_ids as $tag_id){
+$stmt->bind_param('d', $tag_id);
 $stmt->execute();
 $stmt->bind_result($event_id);
-$stmt->fetch();
+while($stmt->fetch()){
 $event_ids[] = $event_id;
 }
+}
+
 
 $stmt->close();
 //remove duplicates from array
