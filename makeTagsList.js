@@ -34,6 +34,8 @@ function makeList(data) {
 
 
     }
+
+    fetchData();
 }
 
 //get tag names from ajax call to db

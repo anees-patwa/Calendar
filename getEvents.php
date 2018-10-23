@@ -63,7 +63,12 @@ $event_ids = array_unique($event_ids);
 
 //select events from db
 $events = [];
-$stmt = $mysqli->prepare("select title, date, time from events where (owner_id=?) and (id=?) and (date between ? and ?)");
+$stmt = $mysqli->prepare("select title, date, start from events where owner_id=? and id=? and (date between ? and ?)");
+// echo json_encode(array(
+//     "error" => true,
+//     "eMessage" => $stmt
+//     ));
+//     exit;
 foreach($event_ids as $event_id){
     $stmt->bind_param('ddss', $userID, $event_id, $firstDay, $lastDay);
     $stmt->execute();
