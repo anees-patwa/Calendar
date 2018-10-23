@@ -176,6 +176,7 @@ function deleteEvent(event) {
     event.preventDefault();
     console.log("delete");
     id = event.target.id;
+    console.log(event.target.id);
     id = parseInt(id);
     const deleteData = {
         "id": id,
@@ -195,7 +196,7 @@ function deleteEvent(event) {
 }
 
 function makeEvents(data) {
-    //console.log(data);
+    console.log(data);
     //$(".dayContainer").empty();
     // let first = data.firstDay;
     for (let i = 0; i < data.length; i++) {
