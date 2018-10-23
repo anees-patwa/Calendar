@@ -204,15 +204,16 @@ function makeEvents(data) {
     // let first = data.firstDay;
 
     for (let i = 0; i < data.length; i++) {
-        if (data[i] == null) {
+        if (data[i].id == null) {
             console.log("null event");
+            continue;
         }
         const day = data[i].date.substring(8, 10); //Finds the specific day of the event
         const title = data[i].title;
         const time = data[i].time;
         const id = data[i].id.toString();
 
-        console.log(title);
+        console.log(title + " " + day);
         $('#day' + day).append("<br>");
         //let container = document.createElement("div");
         //container.setAttribute("id", "event" + id);
