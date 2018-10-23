@@ -45,7 +45,7 @@
 <ul class="days">  
   
 </ul>
-<script type="text/javascript" src="calendar.js"></script>
+
     </div>
     <!--Forms Applicable for unregistered users-->
 
@@ -83,6 +83,7 @@
 
     <!--load js file-->
     <script src="loginRegisterAjax.js"></script>
+    <script src="calendar.js"></script>
     <!--Forms Applicable for registered users-->
 
     <!-- Tags List -->
