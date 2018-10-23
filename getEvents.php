@@ -41,7 +41,8 @@ foreach($tags as $tag_name){
 }
 
 $stmt->close();
-
+echo json_encode(array($tag_ids));
+exit;
 //make array for event ids
 //and prepare select query
 $event_ids = [];
