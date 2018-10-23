@@ -163,7 +163,8 @@ function removeDays() {
 
 
     for (i = 1; i <= amountOfDays; ++i) {
-        $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
+        // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
+         $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
         day += 1;
     }
 
@@ -188,7 +189,7 @@ function deleteEvent(event) {
                 'content-type': 'application/json'
             }
         }).then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => console.log(deleteData))
         .catch(error => console.log("Error: " + error));
 
     //delete event div from screen
@@ -198,14 +199,15 @@ function makeEvents(data) {
     //console.log(data);
     //$(".dayContainer").empty();
     // let first = data.firstDay;
+    
     for (let i = 0; i < data.length; i++) {
 
         const day = data[i].date.substring(8, 10); //Finds the specific day of the event
         const title = data[i].title;
         const time = data[i].time;
         const id = data[i].id.toString();
-        // console.log(day);
-        // console.log(title);
+        
+        console.log(title);
         $('#day' + day).append("<br>");
         //let container = document.createElement("div");
         //container.setAttribute("id", "event" + id);
@@ -213,7 +215,6 @@ function makeEvents(data) {
         $('#day' + day).append("<br>");
         $('#day' + day).append("<span>" + time + "</span>");
         //container.append(document.createElement("p").append(document.createTextNode(title)));
-
         //container.append(document.createElement("p").append(document.createTextNode(time)));
         $('#day' + day).append("<br>");
         // $('#day'+ string).append("<span id=" +'event' + string +">"+ first +"</span>");
