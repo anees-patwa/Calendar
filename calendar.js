@@ -179,6 +179,7 @@ function deleteEvent(event) {
     id = event.target.id;
     console.log(event.target.id);
     id = id.substring(6, 8);
+    console.log(id);
     id = parseInt(id);
     const deleteData = {
         "id": id,

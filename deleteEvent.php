@@ -45,4 +45,8 @@ $stmt = $mysqli->prepare("delete from tags_events where event_id=?");
 $stmt->bind_param('d', $id);
 $stmt->execute();
 $stmt->close();
+
+echo json_encode(array(
+    "success" => true
+))
 ?>
