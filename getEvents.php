@@ -9,6 +9,7 @@ $json_obj = json_decode($json_str, true);
 
 //Variables can be accessed as such:
 $tags = $json_obj['tags'];
+array_push($tags, "default");
 $firstDay = $json_obj['firstDay'];
 $lastDay = $json_obj['lastDay'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
@@ -30,7 +31,8 @@ require("dataBaseAnees.php");
 //and prepare query to get tag ids based on name
 $tag_ids = [];
 $stmt = $mysqli->prepare("select id from tags where name=?");
-
+echo json_encode(array($tags));
+exit;
 //
 foreach($tags as $tag_name){
     $stmt->bind_param('s', $tag_name);
@@ -38,11 +40,11 @@ foreach($tags as $tag_name){
     $stmt->bind_result($tag_id);
     $stmt->fetch();
     $tag_ids[] = $tag_id;
+
 }
 
 $stmt->close();
-echo json_encode(array($tag_ids));
-exit;
+
 //make array for event ids
 //and prepare select query
 $event_ids = [];

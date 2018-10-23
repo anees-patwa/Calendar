@@ -22,7 +22,7 @@ let yearHolder = today.getFullYear();
 
 function nextMonth() {
     month += 1;
-    
+
     if (month > 12) {
         month = 1;
         year = year + 1;
@@ -30,7 +30,7 @@ function nextMonth() {
     }
     document.getElementById("month").innerHTML = months[month];
 
-    firstDay = new Date(year, month-1, 1);
+    firstDay = new Date(year, month - 1, 1);
 
     for (i = 0; i <= 6; ++i) {
         $(".weekdays").empty();
@@ -58,7 +58,7 @@ function nextMonth() {
     removeDays();
 
 
-    
+
 }
 
 function prevMonth() {
@@ -70,18 +70,18 @@ function prevMonth() {
     }
     document.getElementById("month").innerHTML = months[month];
 
-    firstDay = new Date(year, month-1, 1);
+    firstDay = new Date(year, month - 1, 1);
 
 
     for (i = 0; i <= 6; ++i) {
         $(".weekdays").empty();
     }
-    
+
     day1 = firstDay.getDay();
     sum = day1;
     for (i = 0; i <= 6; ++i) {
         actualDate = dates[sum];
-        
+
         $(".weekdays").append("<li id=" + '' + 'slot' + i + ">" + actualDate + "</li>");
         // document.getElementById('slot' + i).innerHTML = actualDate;
 
@@ -96,22 +96,22 @@ function prevMonth() {
     }
 
     removeDays();
-    
+
 }
 
 function currentDate() { //resets date   
     year = today.getFullYear();
-    month = today.getMonth()+1;
-    
-    firstDay = new Date(year, month-1, 1);
+    month = today.getMonth() + 1;
+
+    firstDay = new Date(year, month - 1, 1);
 
     for (i = 1; i <= 6; ++i) {
         $(".weekdays").empty();
     }
     //let d = 0;
-     day1 = firstDay.getDay();
-     sum = day1;
-   
+    day1 = firstDay.getDay();
+    sum = day1;
+
     for (i = 0; i <= 6; ++i) {
         let actualDate = dates[sum];
         $(".weekdays").append("<li id=" + '' + 'slot' + i + ">" + actualDate + "</li>");
@@ -148,7 +148,7 @@ function removeDays() {
     let amountOfDays = 31;
 
     //for (i = 1; i <= amountOfDays; ++i) {
-        $(".days").empty();
+    $(".days").empty();
     //}
 
     if (month == 2) {
@@ -166,24 +166,25 @@ function removeDays() {
 
 }
 
-function deleteEvent(){
+function deleteEvent() {
     //fetch to delete.php
 
     //delete event div from screen
 }
 
-function makeEvents(data){
-        let first = data.firstDay;
-        let string = first.substring(8,9); //Finds the specific day of the event 
-        $('#day'+ string).append("<span id=" +'title' + string +">"+ 'Title' +"</span>");
-        $('#day'+ string).append("<span id=" +'time' + string +">"+ 'Time' +"</span>");
-        // $('#day'+ string).append("<span id=" +'event' + string +">"+ first +"</span>");
-        $('#day'+ string).append("<button id=" +'edit' + string +">"+ 'edit' +"</button>");
-        $('#day'+ string).append("<button id=" +'delete' + string +">"+ 'delete' +"</button>");
-        document.getElementById("delete" + string).addEventListener('click', deleteEvent, false);
-    
+function makeEvents(data) {
+    console.log(data);
+    // let first = data.firstDay;
+    // let string = first.substring(8, 9); //Finds the specific day of the event 
+    // $('#day' + string).append("<span id=" + 'title' + string + ">" + 'Title' + "</span>");
+    // $('#day' + string).append("<span id=" + 'time' + string + ">" + 'Time' + "</span>");
+    // // $('#day'+ string).append("<span id=" +'event' + string +">"+ first +"</span>");
+    // $('#day' + string).append("<button id=" + 'edit' + string + ">" + 'edit' + "</button>");
+    // $('#day' + string).append("<button id=" + 'delete' + string + ">" + 'delete' + "</button>");
+    // document.getElementById("delete" + string).addEventListener('click', deleteEvent, false);
+
     // data[i].time;
-    
+
     //$(".days").append("<span id=" +'event' + ">"+ (data.firstDay) +"</span>");
     //make edit button for each event with id=edit#
     //make delete button with id = delete#
@@ -191,17 +192,17 @@ function makeEvents(data){
     // console.log(data);
 }
 
-function fetchData(){
+function fetchData() {
 
     //event.preventDefault();
     const today = new Date();
     const year = today.getFullYear();
     let month = today.getMonth() + 1;
-    if(month < 10){
+    if (month < 10) {
         month = "0" + month.toString();
     }
-    const firstDay = year.toString() + "-" + month + "-" + 1;
-    const lastDay = year.toString() + "-" + month + "-" + 31;
+    const firstDay = year.toString() + "-" + month + "-" + "01";
+    const lastDay = year.toString() + "-" + month + "-" + "31";
     //const last = document.getElementById("day31").textContent; 
 
     let tags = document.getElementsByClassName("form-check-input");
@@ -211,11 +212,11 @@ function fetchData(){
     // console.log(tags[0].getAttribute("value"));
     //console.log(tags[0].value);
 
-   for(let i = 0; i < tags.length; i++){
-       if(tags[i].getAttribute("checked")){
-        tags_arr.push(tags[i].getAttribute("value"));
-       }
-   }
+    for (let i = 0; i < tags.length; i++) {
+        if (tags[i].getAttribute("checked")) {
+            tags_arr.push(tags[i].getAttribute("value"));
+        }
+    }
 
     //console.log(tags_arr);
 
@@ -226,23 +227,23 @@ function fetchData(){
     };
 
 
-   fetch("getEvents.php", {
-    method: 'POST',
-    body: JSON.stringify(data),
-    headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-    }
+    fetch("getEvents.php", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            }
 
-   })
-   .then(function (response) {
-    var contentType = response.headers.get("content-type");
-    if (contentType && contentType.includes("application/json")) {
-        return response.json();
-    }
-    throw new TypeError("Oops, we haven't got JSON!");
-})
-.then(makeEvents(data))
-.catch(error => console.error('Error:', error));
+        })
+        .then(function (response) {
+            var contentType = response.headers.get("content-type");
+            if (contentType && contentType.includes("application/json")) {
+                return response.json();
+            }
+            throw new TypeError("Oops, we haven't got JSON!");
+        })
+        .then(makeEvents(data))
+        .catch(error => console.error('Error:', error));
 
 }
 

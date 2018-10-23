@@ -12,6 +12,7 @@ $title = $json_obj['title'];
 $date = $json_obj['date'];
 $start = $json_obj['start'];
 $tags = $json_obj['tags'];
+array_push($tags, "default");
 
 //check log-in status
 if(!isset($_SESSION['userID'])){
