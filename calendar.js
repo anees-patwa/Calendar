@@ -204,7 +204,9 @@ function makeEvents(data) {
     // let first = data.firstDay;
 
     for (let i = 0; i < data.length; i++) {
-
+        if (data[i] == null) {
+            console.log("null event");
+        }
         const day = data[i].date.substring(8, 10); //Finds the specific day of the event
         const title = data[i].title;
         const time = data[i].time;
