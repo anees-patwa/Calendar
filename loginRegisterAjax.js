@@ -14,8 +14,8 @@ function changeToLoggedInUI(token) {
     $("#day1").show();
 
     $(".token").val(token);
-
-    getTagList();
+    //fetchData();
+    getTagList()
 }
 
 function changeToGuestUI() {
