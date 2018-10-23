@@ -46,6 +46,14 @@ $insert->execute();
 
 $insert->close();
 
+$lastId = $mysqli->insert_id();
+
+$stmt = $mysqli->prepare("insert into tags (name, owner_id) values ('default', ?)");
+$stmt->bind_param('d', $lastId);
+$stmt->execute();
+$stmt->close();
+
+
 echo json_encode(array(
 "error" => "false",
 ));
