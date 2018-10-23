@@ -10,7 +10,7 @@ function signOut(event) {
                 'content-type': "application/json"
             }
         }).then(res => res.json())
-        .then(processSignOut(data))
+        .then(data => processSignOut(data))
         .catch(error => console.error("Error: +", error));
 }
 
