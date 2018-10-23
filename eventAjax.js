@@ -7,6 +7,7 @@ function processAddEvent(data) {
         console.log("succesfully added");
         //clear form
         $(".clear").val("");
+        fetchData();
 
     }
 }
@@ -20,6 +21,14 @@ function addEvent() {
     let tags = document.getElementById("tags").value;
     tags = tags.replace(/\s+/g, '');
     let tags_arr = tags.split(",");
+    if (tags_arr.length == 1 || tags_arr.length == 0) {
+        tags_arr.push("default");
+    }
+    for (let i = 0; i < tags_arr.length; i++) {
+        if ((tags_arr[i] == "")) {
+            tags_arr.splice(i, 1);
+        }
+    }
     console.log(tags_arr);
 
     //filter title

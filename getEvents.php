@@ -9,7 +9,7 @@ $json_obj = json_decode($json_str, true);
 
 //Variables can be accessed as such:
 $tags = $json_obj['tags'];
-array_push($tags, "default");
+//array_push($tags, "default");
 $firstDay = $json_obj['firstDay'];
 $lastDay = $json_obj['lastDay'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
@@ -40,6 +40,7 @@ foreach($tags as $tag_name){
     $stmt->fetch();
     $tag_ids[] = $tag_id;
 
+
 }
 
 $stmt->close();
@@ -66,18 +67,20 @@ $event_ids = array_unique($event_ids);
 
 //select events from db
 $events = [];
-$stmt = $mysqli->prepare("select title, date, start from events where owner_id=? and id=? and (date between ? and ?)");
+$stmt = $mysqli->prepare("select id, title, date, start from events where owner_id=? and id=? and (date between ? and ?)");
 // echo json_encode(array(
 //     "error" => true,
 //     "eMessage" => $stmt
 //     ));
 //     exit;
+
 foreach($event_ids as $event_id){
     $stmt->bind_param('ddss', $userID, $event_id, $firstDay, $lastDay);
     $stmt->execute();
-    $stmt->bind_result($title, $date, $time);
+    $stmt->bind_result($eventid, $title, $date, $time);
     $stmt->fetch();
     $events[] = array(
+        "id" => $eventid,
         "title" => $title,
         "date" => $date,
         "time" => $time

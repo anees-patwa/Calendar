@@ -12,7 +12,14 @@ $title = $json_obj['title'];
 $date = $json_obj['date'];
 $start = $json_obj['start'];
 $tags = $json_obj['tags'];
-array_push($tags, "default");
+/*if(count($tags) == 0){
+    array_push($tags, "default");
+} else if (strcmp($tags[0], "") == 0){
+    array_push($tags, "default");
+}*/
+// echo json_encode($tags);
+// exit;
+
 
 //check log-in status
 if(!isset($_SESSION['userID'])){
@@ -82,19 +89,23 @@ $insertedEventID = $mysqli->insert_id;
 $stmt = $mysqli->prepare("select id from tags where name=? AND owner_id=?");
 $tag_ids = [];
 //insert into tag_ids array
-foreach($tags as $tag_id) {
-    $stmt->bind_param('sd', $tag_id, $userID);
+foreach($tags as $tag_name) {
+
+    $stmt->bind_param('sd', $tag_name, $userID);
     $stmt->execute();
     $stmt->bind_result($tid);
+    $stmt->fetch();
     $tag_ids[] = $tid;
 }
 $stmt->close();
+
+
 
 //insert tag and event ids into tags_events table
 //tags_events keeps track of many to many relationship between events and tags
 $stmt = $mysqli->prepare("insert into tags_events (tag_id, event_id) values (?,?)");
 foreach($tag_ids as $tagid){
-    $stmt->bind_param('dd', $tagid, $userID);
+    $stmt->bind_param('dd', $tagid, $insertedEventID);
     $stmt->execute();
 }
 
