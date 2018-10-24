@@ -42,8 +42,13 @@ function makeList(data) {
 //get tag names from ajax call to db
 function getTagList() {
     //make tags list
+    const token = document.getElementsByClassName("token")[0].value;
+    const data = {
+        'token': token
+    }
     fetch("getTags.php", {
             method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "content-type": 'application/json'
             }

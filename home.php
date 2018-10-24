@@ -20,31 +20,32 @@
     <script src="makeTagsList.js"></script>
 
     <div class="container" id="cal">
-    <div class="month">      
-  <ul>
-    <button id="prev">&#10094</button>
-    <button id="today">Today</button>
-    <button id="next">&#10095</button>
-    <li>
-     <h2 id="month"></h2>
-    <span id="year" style="font-size:18px"></span>
-    </li>
-  </ul>
-</div>
+        <div class="month">
+            <button id="prev">&#10094;</button>
+            <button id="today">Today</button>
+            <button id="next">&#10095;</button>
+            <ul>
 
-<ul class="weekdays">
-  <li>Mo</li>
-  <li>Tu</li>
-  <li>We</li>
-  <li>Th</li>
-  <li>Fr</li>
-  <li>Sa</li>
-  <li>Su</li>
-</ul>
+                <li>
+                    <h2 id="month">Default</h2>
+                    <span id="year" style="font-size:18px"></span>
+                </li>
+            </ul>
+        </div>
 
-<ul class="days">  
-  
-</ul>
+        <ul class="weekdays">
+            <li>Mo</li>
+            <li>Tu</li>
+            <li>We</li>
+            <li>Th</li>
+            <li>Fr</li>
+            <li>Sa</li>
+            <li>Su</li>
+        </ul>
+
+        <ul class="days">
+
+        </ul>
 
     </div>
     <!--Forms Applicable for unregistered users-->

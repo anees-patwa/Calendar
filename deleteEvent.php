@@ -11,6 +11,17 @@ $json_obj = json_decode($json_str, true);
 $id = $json_obj['id'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
+//get data
+$token = $json_obj[token];
+
+if(strcmp($token, $_SESSION['token']) != 0){
+echo json_encode(array(
+"error" => true,
+"eMessage" => "Request Forgery detected",
+
+));
+exit;
+}
 //open connection to database
 $mysqli = new mysqli('localhost', 'wustl_inst', 'wustl_pass', 'calendar');
 

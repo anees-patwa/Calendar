@@ -213,8 +213,10 @@ function deleteEvent(event) {
     id = id.substring(6, 8);
     console.log(id);
     id = parseInt(id);
+    const token = document.getElementsByClassName('token')[0].value;
     const deleteData = {
         "id": id,
+        'token': token
     }
 
     fetch("deleteEvent.php", {
@@ -325,12 +327,15 @@ function fetchData() {
         tags_arr.push("default");
     }
 
+    const token = document.getElementsByClassName('token')[0].nodeValue;
+
     //console.log(tags_arr);
 
     const data = {
         'firstDay': firstDay,
         'lastDay': lastDay,
-        'tags': tags_arr
+        'tags': tags_arr,
+        'token': token
     };
 
 
