@@ -32,6 +32,8 @@ function makeList(data) {
         $container.appendChild($label);
         $list.appendChild($container);
 
+        $input.addEventListner("change", fetchData, false);
+
 
     }
 
