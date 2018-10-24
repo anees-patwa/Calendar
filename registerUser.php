@@ -46,7 +46,7 @@ $insert->execute();
 
 $insert->close();
 
-$lastId = $mysqli->insert_id();
+$lastId = $mysqli->insert_id;
 
 $stmt = $mysqli->prepare("insert into tags (name, owner_id) values ('default', ?)");
 $stmt->bind_param('d', $lastId);
