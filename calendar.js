@@ -160,12 +160,19 @@ function removeDays() {
     if (month == 4 || month == 6 || month == 9 || month == 11) {
         amountOfDays = 30;
     }
+    
 
 
     for (i = 1; i <= amountOfDays; ++i) {
+        if(day > 0 && day < 10){
+            $(".days").append("<li id=" + '' + 'day' + 0+ day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
+            day +=1;
+        }
+        else{
         // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
          $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
         day += 1;
+        }
     }
 
     fetchData();
@@ -197,16 +204,17 @@ function deleteEvent(event) {
 
 function makeEvents(data) {
     //console.log(data);
-    //$(".dayContainer").empty();
+    // $(".dayContainer").empty();
+   
     // let first = data.firstDay;
     
     for (let i = 0; i < data.length; i++) {
-
+    
         const day = data[i].date.substring(8, 10); //Finds the specific day of the event
         const title = data[i].title;
         const time = data[i].time;
         const id = data[i].id.toString();
-        
+
         console.log(title);
         $('#day' + day).append("<br>");
         //let container = document.createElement("div");
