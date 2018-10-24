@@ -12,11 +12,13 @@ http://ec2-18-223-143-71.us-east-2.compute.amazonaws.com/~apatwa/module5Grp/home
 
 ##### Creative Portion
 - added ability to create tags and assign them to events
-- implemented so that tags have many to many relationship with events
-- default tag added to new event when no tags are given
-- show events based on tag by clicking checkboxes below calendar
+    - implemented so that tags have many to many relationship with events
+    - default tag added to new event when no tags are given
+    - show events based on tag by clicking checkboxes below calendar
 - Added a today button
-- Today button brings up current month
+    - Today button brings up current month
+- Download as CSV
+    - Ability to download events from current month as a csv file
 
 #Students
 - Anees Patwa 457996

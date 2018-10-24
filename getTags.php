@@ -8,7 +8,7 @@ $json_str = file_get_contents('php://input');
 $json_obj = json_decode($json_str, true);
 
 //get data
-$token = $json_obj['token'];
+/*$token = $json_obj['token'];
 
 if(strcmp($token, $_SESSION['token']) != 0){
 echo json_encode(array(
@@ -17,7 +17,7 @@ echo json_encode(array(
 
 ));
 exit;
-}
+}*/
 //check log-in status
 if(!isset($_SESSION['userID'])){
 echo json_encode(array(

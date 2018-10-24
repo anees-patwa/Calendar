@@ -17,7 +17,7 @@
 </head>
 
 <body>
-<input type="hidden" value="null" id="token">
+    <input type="hidden" value="null" id="token">
     <script src="makeTagsList.js"></script>
 
     <div class="container" id="cal">
@@ -82,7 +82,7 @@
             <button type="submit" id="register_btn" class="btn btn-primary">Register</button>
         </form>
     </div>
-
+    <a id="download">Download Calendar as CSV</a>
     <!--load js file-->
     <script src="loginRegisterAjax.js"></script>
     <script src="calendar.js"></script>
@@ -103,7 +103,7 @@
                 <label for="tag_name">Name: </label>
                 <input type="text" id="tag_name" placeholder="Tag Name" class="form-control clear">
             </div>
-          
+
             <button type="submit" id="newTag_btn" class="btn btn-primary">Create Tag</button>
         </form>
     </div>
@@ -134,6 +134,8 @@
             <button type="submit" id="newEvent_btn" class="btn btn-primary">Create Event</button>
         </form>
     </div>
+
+
     <script src="eventAjax.js"></script>
 
     <button type="submit" id="signOut_btn" class="btn btn-primary">Sign-Out</button>
