@@ -6,6 +6,10 @@
     display: none;
 }
 
+#download {
+    display: none;
+}
+
 #newTagForm {
     display: none;
 }

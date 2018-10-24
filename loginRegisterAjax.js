@@ -12,6 +12,7 @@ function changeToLoggedInUI(token) {
     $("#cal").show();
     $(".days").show();
     $("#day1").show();
+    $("#download").show();
 
     $("#token").val(token);
     console.log($("#token").val());
@@ -20,6 +21,7 @@ function changeToLoggedInUI(token) {
 }
 
 function changeToGuestUI() {
+    $("#download").hide();
     $("#loginForm").show();
     $("#newUserForm").show();
     $("#addEvent").hide();

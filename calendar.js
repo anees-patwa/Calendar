@@ -238,6 +238,8 @@ function makeEvents(data) {
     removeDays();
     // let first = data.firstDay;
     // removeDays();
+    let downloadButton = document.getElementById("download");
+    let csvString = "date,title,time\n";
 
     for (let i = 0; i < data.length; i++) {
         if (data[i].id == null) {
@@ -248,7 +250,7 @@ function makeEvents(data) {
         const title = data[i].title;
         const time = data[i].time;
         const id = data[i].id.toString();
-
+        csvString += data[i].date.toString() + "," + data[i].title + "," + data[i].time + "\n";
         //console.log(title + " " + day);
         $('#day' + day).append("<br>");
         //let container = document.createElement("div");
@@ -273,6 +275,12 @@ function makeEvents(data) {
         //document.getElementById("delete" + id).addEventListener('click', deleteEvent(id), false);
     }
     // data[i].time;
+
+    //assign to download button
+    let a = document.getElementById('download');
+    a.download = "calendar.csv";
+    a.href = 'data:text/csv;charset=utf-8,' + escape(csvString);
+
 
     //$(".days").append("<span id=" +'event' + ">"+ (data.firstDay) +"</span>");
     //make edit button for each event with id=edit#
