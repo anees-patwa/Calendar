@@ -29,6 +29,15 @@ function nextMonth() {
         document.getElementById('year').innerHTML = year;
     }
     document.getElementById("month").innerHTML = months[month];
+    $hiddenMonth = document.createElement("p");
+    $hiddenMonth.setAttribute("id", month + "month");
+    $hiddenMonth.style.display = "none";
+    document.getElementById("month").appendChild($hiddenMonth);
+
+    $hiddenYear = document.createElement("p");
+    $hiddenYear.setAttribute("id", year + "year");
+    $hiddenYear.style.display = "none";
+    document.getElementById("year").appendChild($hiddenYear);
 
     firstDay = new Date(year, month - 1, 1);
 
@@ -55,8 +64,8 @@ function nextMonth() {
         }
     }
 
-    removeDays();
-    //fetchData();
+    //removeDays();
+    fetchData();
 
 
 
@@ -70,7 +79,15 @@ function prevMonth() {
         document.getElementById('year').innerHTML = year;
     }
     document.getElementById("month").innerHTML = months[month];
+    $hiddenMonth = document.createElement("p");
+    $hiddenMonth.setAttribute("id", month + "month");
+    $hiddenMonth.style.display = "none";
+    document.getElementById("month").appendChild($hiddenMonth);
 
+    $hiddenYear = document.createElement("p");
+    $hiddenYear.setAttribute("id", year + "year");
+    $hiddenYear.style.display = "none";
+    document.getElementById("year").appendChild($hiddenYear);
     firstDay = new Date(year, month - 1, 1);
 
 
@@ -96,8 +113,8 @@ function prevMonth() {
 
     }
 
-    removeDays();
-    //fetchData();
+    //removeDays();
+    fetchData();
 
 }
 
@@ -137,9 +154,18 @@ function currentDate() { //resets date
     monthHolder = today.getMonth() + 1;
 
     document.getElementById('year').innerHTML = yearHolder;
-    document.getElementById("month").innerHTML = months[monthHolder]
-    removeDays();
-    //fetchData();
+    document.getElementById("month").innerHTML = months[monthHolder];
+    $hiddenMonth = document.createElement("p");
+    $hiddenMonth.setAttribute("id", month + "month");
+    $hiddenMonth.style.display = "none";
+    document.getElementById("month").appendChild($hiddenMonth);
+
+    $hiddenYear = document.createElement("p");
+    $hiddenYear.setAttribute("id", year + "year");
+    $hiddenYear.style.display = "none";
+    document.getElementById("year").appendChild($hiddenYear);
+    //removeDays();
+    fetchData();
 
 }
 
@@ -160,22 +186,21 @@ function removeDays() {
     if (month == 4 || month == 6 || month == 9 || month == 11) {
         amountOfDays = 30;
     }
-    
+
 
 
     for (i = 1; i <= amountOfDays; ++i) {
-        if(day > 0 && day < 10){
-            $(".days").append("<li id=" + '' + 'day' + 0+ day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
-            day +=1;
-        }
-        else{
-        // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
-         $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
-        day += 1;
+        if (day > 0 && day < 10) {
+            $(".days").append("<li id=" + '' + 'day' + 0 + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
+            day += 1;
+        } else {
+            // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
+            $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
+            day += 1;
         }
     }
 
-    fetchData();
+    //fetchData();
 
 }
 
@@ -184,9 +209,14 @@ function deleteEvent(event) {
     event.preventDefault();
     console.log("delete");
     id = event.target.id;
+    console.log(event.target.id);
+    id = id.substring(6, 8);
+    console.log(id);
     id = parseInt(id);
+    const token = document.getElementsByClassName('token')[0].value;
     const deleteData = {
         "id": id,
+        'token': token
     }
 
     fetch("deleteEvent.php", {
@@ -196,26 +226,30 @@ function deleteEvent(event) {
                 'content-type': 'application/json'
             }
         }).then(res => res.json())
-        .then(data => console.log(deleteData))
+        .then(fetchData)
         .catch(error => console.log("Error: " + error));
 
     //delete event div from screen
 }
 
 function makeEvents(data) {
-    //console.log(data);
-    // $(".dayContainer").empty();
-   
+    console.log(data);
+    //$(".dayContainer").empty();
+    removeDays();
     // let first = data.firstDay;
-    
+    // removeDays();
+
     for (let i = 0; i < data.length; i++) {
-    
+        if (data[i].id == null) {
+            //console.log("null event");
+            continue;
+        }
         const day = data[i].date.substring(8, 10); //Finds the specific day of the event
         const title = data[i].title;
         const time = data[i].time;
         const id = data[i].id.toString();
 
-        console.log(title);
+        //console.log(title + " " + day);
         $('#day' + day).append("<br>");
         //let container = document.createElement("div");
         //container.setAttribute("id", "event" + id);
@@ -235,7 +269,7 @@ function makeEvents(data) {
 
         //container.append("<button id=" + 'delete' + id + ">" + 'delete' + "</button>");
         $('#day' + day).append(deleteButton);
-        console.log("another event loaded")
+        //console.log("another event loaded")
         //document.getElementById("delete" + id).addEventListener('click', deleteEvent(id), false);
     }
     // data[i].time;
@@ -250,17 +284,29 @@ function makeEvents(data) {
 function fetchData() {
 
     //event.preventDefault();
-    const today = new Date();
-    const year = today.getFullYear();
-    let month = today.getMonth() + 1;
-    if (month < 10) {
-        month = "0" + month.toString();
+    //const today = new Date();
+    let yearToSend = new Date().getFullYear();
+    if (document.getElementById("year").childNodes[1]) {
+        yearToSend = document.getElementById("year").childNodes[1].id.substring(0, 4);
+        console.log("changed " + yearToSend);
     }
-    const firstDay = year.toString() + "-" + month + "-" + "01";
-    const lastDay = year.toString() + "-" + month + "-" + "31";
+    let monthToSend = new Date().getMonth();
+    if (document.getElementById("month").childNodes[1]) {
+        monthToSend = document.getElementById("month").childNodes[1].id.substring(0, 2);
+        console.log("changed " + yearToSend);
+    }
+    monthToSend = parseInt(monthToSend);
+    //monthToSend += 1;
+    if (monthToSend < 10) {
+        monthToSend = "0" + monthToSend.toString();
+    }
+    const firstDay = yearToSend.toString() + "-" + monthToSend.toString() + "-" + "01";
+    const lastDay = yearToSend.toString() + "-" + monthToSend.toString() + "-" + "31";
     //const last = document.getElementById("day31").textContent; 
-
-    let tags = document.getElementsByClassName("form-check-input");
+    console.log("first " + firstDay);
+    console.log("last " + lastDay);
+    let tags = document.getElementsByTagName("input");
+    //console.log(tags);
     tags_arr = new Array();
     // console.log(tags);
     // console.log(tags.length);
@@ -268,21 +314,28 @@ function fetchData() {
     //console.log(tags[0].value);
 
     for (let i = 0; i < tags.length; i++) {
-        if (tags[i].getAttribute("checked")) {
-            tags_arr.push(tags[i].getAttribute("value"));
+        if (tags[i].type == "checkbox") {
+            if (tags[i].checked) {
+                tags_arr.push(tags[i].name);
+            }
         }
     }
+
+    //console.log(tags_arr);
 
     if (tags_arr.length == 0) {
         tags_arr.push("default");
     }
+
+    const token = document.getElementsByClassName('token')[0].nodeValue;
 
     //console.log(tags_arr);
 
     const data = {
         'firstDay': firstDay,
         'lastDay': lastDay,
-        'tags': tags_arr
+        'tags': tags_arr,
+        'token': token
     };
 
 

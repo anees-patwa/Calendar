@@ -16,9 +16,8 @@ function makeList(data) {
         //create input element
         $input = document.createElement("input");
         $input.setAttribute("type", "checkbox");
-        $input.setAttribute("name", "tags");
+        $input.setAttribute("name", data[key]);
         $input.setAttribute("class", "form-check-input");
-        $input.setAttribute("value", data[key]);
         //$input.appendChild(document.createTextNode(data[key]));
 
         //create label
@@ -32,17 +31,24 @@ function makeList(data) {
         $container.appendChild($label);
         $list.appendChild($container);
 
+        $input.addEventListener("change", fetchData, false);
+
 
     }
 
-    fetchData();
+    //fetchData();
 }
 
 //get tag names from ajax call to db
 function getTagList() {
     //make tags list
+    const token = document.getElementsByClassName("token")[0].value;
+    const data = {
+        'token': token
+    }
     fetch("getTags.php", {
             method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "content-type": 'application/json'
             }
