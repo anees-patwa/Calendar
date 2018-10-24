@@ -17,6 +17,7 @@
 </head>
 
 <body>
+<input type="hidden" value="null" id="token">
     <script src="makeTagsList.js"></script>
 
     <div class="container" id="cal">
@@ -102,7 +103,7 @@
                 <label for="tag_name">Name: </label>
                 <input type="text" id="tag_name" placeholder="Tag Name" class="form-control clear">
             </div>
-            <input type="hidden" value="null" id="token">
+          
             <button type="submit" id="newTag_btn" class="btn btn-primary">Create Tag</button>
         </form>
     </div>
