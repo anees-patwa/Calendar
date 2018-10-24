@@ -162,10 +162,16 @@ function removeDays() {
     }
 
 
+
     for (i = 1; i <= amountOfDays; ++i) {
-        // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
-        $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
-        day += 1;
+        if (day > 0 && day < 10) {
+            $(".days").append("<li id=" + '' + 'day' + 0 + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
+            day += 1;
+        } else {
+            // $(".days").append("<li id=" + '' + 'day' + day + "class = dayContainer>" + (day) + "</li>");
+            $(".days").append("<li id=" + '' + 'day' + day + " " + "class=" + 'dayContainer' + ">" + (day) + "</li>");
+            day += 1;
+        }
     }
 
     fetchData();
