@@ -1,4 +1,6 @@
 function processSignOut(data) {
+    $(".dayContainer").empty();
+    removeDays();
     changeToGuestUI();
 }
 
