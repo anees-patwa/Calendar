@@ -14,17 +14,16 @@ $firstDay = $json_obj['firstDay'];
 $lastDay = $json_obj['lastDay'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
-//get data
-$token = $json_obj['token'];
 
-if(strcmp($token, $_SESSION['token']) != 0){
+
+/*if(strcmp($token, $_SESSION['token']) != 0){
 echo json_encode(array(
 "error" => true,
 "eMessage" => "Request Forgery detected",
 
 ));
 exit;
-}
+}*/
 //check log-in status
 if(!isset($_SESSION['userID'])){
 echo json_encode(array(
@@ -38,12 +37,12 @@ $userID = $_SESSION['userID'];
 //connect to database
 require("dataBaseAnees.php");
 
+
 //make tag ids arrray
 //and prepare query to get tag ids based on name
 $tag_ids = [];
 $stmt = $mysqli->prepare("select id from tags where name=?");
 
-//
 foreach($tags as $tag_name){
     $stmt->bind_param('s', $tag_name);
     $stmt->execute();
@@ -96,6 +95,7 @@ foreach($event_ids as $event_id){
         "date" => $date,
         "time" => $time
     );
+
 }
 
 $stmt->close();

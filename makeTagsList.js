@@ -42,7 +42,7 @@ function makeList(data) {
 //get tag names from ajax call to db
 function getTagList() {
     //make tags list
-    const token = document.getElementsByClassName("token")[0].value;
+    const token = document.getElementById("token").value;
     const data = {
         'token': token
     }

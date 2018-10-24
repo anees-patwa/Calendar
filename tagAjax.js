@@ -11,7 +11,7 @@ function processResponse(data) {
 function addTagAjax(event) {
     event.preventDefault();
     const tag = document.getElementById("tag_name").value;
-    const token = document.getElementsByClassName("token")[1].value;
+    const token = document.getElementById("token").value;
 
     const data = {
         'tag': tag,

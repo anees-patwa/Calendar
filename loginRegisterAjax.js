@@ -13,7 +13,8 @@ function changeToLoggedInUI(token) {
     $(".days").show();
     $("#day1").show();
 
-    $(".token").val(token);
+    $("#token").val(token);
+    console.log($("#token").val());
     fetchData();
     getTagList();
 }

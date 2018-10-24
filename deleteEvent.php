@@ -1,7 +1,7 @@
 <?php
 header("Content-Type: application/json; charset=utf-8");
  // Since we are sending a JSON response here (not an HTML document), set the MIME Type to application/json
-
+ session_start();
 //Because you are posting the data via fetch(), php has to retrieve it elsewhere.
 $json_str = file_get_contents('php://input');
 //This will store the data into an associative array
@@ -12,7 +12,7 @@ $id = $json_obj['id'];
 //This is equivalent to what you previously did with $_POST['username'] and $_POST['password']
 
 //get data
-$token = $json_obj[token];
+$token = $json_obj['token'];
 
 if(strcmp($token, $_SESSION['token']) != 0){
 echo json_encode(array(
@@ -32,7 +32,7 @@ echo json_encode(array(
 exit();
 }
 
-session_start();
+
 
 if(!isset($_SESSION['userID'])){
     echo json_encode(array(
