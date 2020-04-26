@@ -1,9 +1,6 @@
 # Calendar
 Calendar Application
 
-# Link
-http://ec2-18-223-143-71.us-east-2.compute.amazonaws.com/~apatwa/module5Grp/home.php
-
 # Features
 - Create a user, login, and log out of the calendar
 - Add and delete events when logged in
